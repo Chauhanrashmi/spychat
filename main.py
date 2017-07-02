@@ -71,8 +71,8 @@ def add_friend():
      new_friend.age = raw_input("Age?")
      new_friend.age = int(new_friend.age)
 
-     new_friend.spy_rating = raw_input("Spy rating?")
-     new_friend.spy_rating = float(new_friend.spy_rating)
+     new_friend.rating = raw_input("New Spy rating?")
+     new_friend.rating = float(new_friend.rating)
 
      if len(new_friend.name) > 0 and new_friend.age > 12 and new_friend.rating >= spy.rating:
          friends.append(new_friend)
@@ -108,9 +108,9 @@ def send_message():
     friend_choice = select_friend()
 
     input_image = raw_input("What is the name of the image?")
-    output_path = "output.jpg"
+    recieved_path = "output.jpg"
     text = raw_input("What do you want to say? ")
-    Steganography.encode(input_image, output_path, text)
+    Steganography.encode(input_image, recieved_path, text)
 
     new_chat = Chatmessage(text, True)
 
@@ -125,10 +125,10 @@ def read_message():
 
     sender = select_friend()
 
-    output_path = raw_input("What is the name of the file?")
-    secret_text = Steganography.decode(output_path)
+    recieved_path = raw_input("What is the name of the file?")
+    secret_message = Steganography.decode(recieved_path)
 
-    new_chat = Chatmessage(secret_text,False)
+    new_chat = Chatmessage(secret_message,False)
 
 
     friends[sender].chats.append(new_chat)
@@ -150,7 +150,7 @@ def read_chat_history():
 
         else:
             print colored(chat.time.strftime("%d %B %Y"),'blue'),
-            print colored('%s said:' % ( friends[read_for].name),'red'),
+            print colored('%s said:' % (friends[read_for].name),'red'),
             print (chat.message)
 #read chat_history function ends
 

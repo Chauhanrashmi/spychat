@@ -20,7 +20,7 @@ class Chatmessage:
         self.sent_by_me = sent_by_me
 
 
-spy = Spy('Rashmi', 'Ms.', 21, 4.5)
+spy = Spy('Rashmi', 'Ms.', 19, 4.5)
 
 friend_one = Spy('Ruchi', 'Ms.', 21, 4.9)
 friend_two = Spy('Munisha', 'Ms.', 23, 4.3)
