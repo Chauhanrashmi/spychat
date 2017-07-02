@@ -3,23 +3,20 @@
 
 from spy_detail import spy, Spy, friends, ChatMessage
 from steganography.steganography import Steganography
-from datetime import datetime
-
+import sys
+from termcolor import colored
 
 
 STATUS_MESSAGES = ['Hello! im back', 'All glitters are not gold', 'OMG so many fools','A good experience came from a bad experience']  #list name: STATUS_MESSAGES containing old status
 
-#friends=[]
 print"hello!"   #HELLO STRING PRINT HERE
 print"let's get started"
-
-
-
 
 #spy choices as existing or new
 question = "Do you want to continue as " + spy.salutation + " " + spy.name + " (yes/no)? "
 existing = str(raw_input(question))
 print str(existing)
+
 
 # add_status function definition starts
 def add_status(current_status_message):
@@ -65,7 +62,6 @@ def add_status(current_status_message):
 
 
 #add_friend function definition starts
-
 def add_friend():
      new_friend = Spy('', '', 0, 0.0)
      new_friend.name = raw_input("Please add your friend's name: ")
@@ -86,8 +82,10 @@ def add_friend():
          print 'Sorry! Invalid entry. We can\'t add spy with the details you provided'
 
      return len(friends)
+#add_friend function definition ends
 
 
+#select_friend function definition starts
 def select_friend():
         item_number = 0
 
@@ -102,10 +100,10 @@ def select_friend():
         friend_choice_position = int(friend_choice) - 1
 
         return friend_choice_position
+#select_friend function definition ends
 
 
-#add_friend function definition ends
-
+#rsens_message function starts
 def send_message():
 
     friend_choice = select_friend()
@@ -115,13 +113,15 @@ def send_message():
     text = raw_input("What do you want to say? ")
     Steganography.encode(input_image, output_path, text)
 
-    new_chat = ChatMessage(text, True)
+    new_chat = Chatmessage(text, True)
 
     friends[friend_choice].chats.append(new_chat)
 
     print "Your secret message image is ready!"
+# read_message function ends
 
 
+#read_message function starts
 def read_message():
 
     sender = select_friend()
@@ -129,26 +129,31 @@ def read_message():
     output_path = raw_input("What is the name of the file?")
     secret_text = Steganography.decode(output_path)
 
-    new_chat = ChatMessage(secret_text,False)
+    new_chat = Chatmessage(secret_text,False)
 
 
     friends[sender].chats.append(new_chat)
 
     print "Your secret message has been saved!"
+#read_message function ends
 
+
+#read chat_history function starts
 def read_chat_history():
     read_for = select_friend()
-    print 'chat history:'
+    print 'Chat history:'
 
     for chat in friends[read_for].chats:
         if chat.sent_by_me:
-            print '[%s] %s: %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
+            print colored(chat.time.strftime("%d %B %Y"), 'blue'),
+            print colored('Rashmi said : ' , 'red'),
+            print (chat.message)
+
         else:
-            print '[%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
-        #else:
-           # print 'No history with this contact'
-
-
+            print colored(chat.time.strftime("%d %B %Y"),'blue'),
+            print colored('%s said:' % ( friends[read_for].name),'red'),
+            print (chat.message)
+#read chat_history function ends
 
 #  start_chat function definition
 def start_chat(spy):
@@ -186,9 +191,9 @@ def start_chat(spy):
 #start_chat function ends
 
 
-    #checking wether user existing or new
+#checking wether user existing or new
 if existing == "yes":
-    #Continue with the default user/details imported from the helper file.
+   #Continue with the default user/details imported from the helper file.
    start_chat(spy)    #start_chat function declaration or calling
 else:
     #when user is new to spychat
