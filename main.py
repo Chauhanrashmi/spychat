@@ -3,7 +3,6 @@
 
 from spy_detail import spy, Spy, friends, Chatmessage
 from steganography.steganography import Steganography
-import sys
 from termcolor import colored
 
 
