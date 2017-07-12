@@ -202,16 +202,17 @@ else:
 
     spy.name = raw_input("Welcome to spy chat, you must tell me your spy name first: ")     # spy_name is a variable to store spy name
     if len(spy.name) > 0:
-         print 'Welcome dear(*_*)' + spy.name + '.We are Glad to have you back with us.'
 
          spy.salutation = raw_input("What should we call you (Mr. or Ms.)? ")                # spy_saultation input here
          spy.name = spy.salutation + " " + spy.name
+
+         print 'Welcome dear(*_*)' + spy.name + '.We are Glad to have you back with us.'
 
           # Here are some important things about our spy like age & rating:
          print "Alright " + spy.name + ". I'd like to know a little bit more about you before we proceed..."
 
          spy.age = int(raw_input("What is your age?"))                                        # input spy_age
-         print type(spy.age)                                                                #tells about the datatype of spy_age
+         print int(spy.age)                                                                #tells about the datatype of spy_age
          if spy.age > 15 and spy.age < 40:                                                    # condition
             print"hey! you can proceed further"                                               # action
             spy.rating = float(raw_input("What is your spy rating?"))                         #spy rating input here
@@ -228,9 +229,21 @@ else:
               print"sorry! your age is invalid to be a spy"                                 #this works when spy entered a age which is not valid
 
          spy_is_online = True                                                               # spy_is online or not
-         # Using + for string concatenation
-         #print "Authentication complete. Welcome " + spy.name + "  age: " + str(spy.age) + "  and rating of spy: " + str(spy.rating) + "  Proud to have you onboard"
          start_chat(spy)                                                                    #function declaration or calling
 
     else:
-         print "A spy needs to have a valid name. Try again and pls re-enter your name"
+         print "A spy needs to have a valid name. Try again and pls re-enter your name"       #warning message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
